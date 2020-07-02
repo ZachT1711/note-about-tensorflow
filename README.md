@@ -13,6 +13,7 @@ tensorflow_gpu-1.13.1-cp36-cp36m-win_amd64
 
 一开始安装的tensorflow_gpu版本为1.12.0,出现ImportError: DLL load failed: 找不到指定的模块。
                                          Failed to load the native TensorFlow runtime.
+                                         
 原因为：CUDA版本与CUDNN与tensorflow_gpu版本不对应
           
 使用pip install -U tensorflow-gpu==（指定版本号） -i https://pypi.tuna.tsinghua.edu.cn/simple
@@ -21,13 +22,19 @@ tensorflow_gpu-1.13.1-cp36-cp36m-win_amd64
 出现EXCEPTION,很可能是网络原因，重新pip安装即可
 
 在python中测试是否为tensorflow_gpu环境：
+
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 
 另一种测试方法：
+
 tf.test.is_gpu_available()
 
 查看当前tensorflow版本:
+
 进入CMD,输入 conda info -e查看环境
+
 激活并进入某环境 activate tensorflow-gpu
+
 进入编译 python
+
 使用pip指令  pip show tensorflow-gpu
