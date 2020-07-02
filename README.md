@@ -1,8 +1,12 @@
 # note-about-tensorflow
 tensorflow-gpu 踩坑实录  基于win10 
+
 安装成功配置: 
+
 cuda_10.0.130_411.31_win10 
+
 cudnn-10.0-windows10-x64-v7.4.2.24 
+
 tensorflow_gpu-1.13.1-cp36-cp36m-win_amd64
 
 安装流程：  CUDA->cudnn->tensorflow-gpu
@@ -11,7 +15,8 @@ tensorflow_gpu-1.13.1-cp36-cp36m-win_amd64
                                          Failed to load the native TensorFlow runtime.
 原因为：CUDA版本与CUDNN与tensorflow_gpu版本不对应
           
-使用pip install -U tensorflow-gpu==（指定版本号） -i https://pypi.tuna.tsinghua.edu.cn/simple，该操作会删除原有的GPU版本，再通过国内源下载指定的版本
+使用pip install -U tensorflow-gpu==（指定版本号） -i https://pypi.tuna.tsinghua.edu.cn/simple
+                                                                                            该操作会删除原有的GPU版本，再通过国内源下载指定的版本
 
 出现EXCEPTION,很可能是网络原因，重新pip安装即可
 
