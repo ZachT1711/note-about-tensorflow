@@ -1,0 +1,45 @@
+数据转换与处理
+
+tf.get_Variable("x",shape,type,initializer=tf.contrib.layer.xavier_initilizer())  没有x则创建x
+tf.Variable(x)
+
+tf.ramdom_normal(shape,正态分布均值，标准差，type,seed,name)
+
+tf.random_uniform（shape,low,high,type） 返回shape大小的均值分布数据
+
+tf.zeros(shape,type)
+
+np.array ,  np.asarray  都是转换成ndarray，但是asarray不会占用新的内存
+
+tf.reshape(inputs,shape)
+
+tf.random_permutation(x)  生成从0-x内随机排序的数组
+
+
+
+
+tf.convert_to_tensor(value, dtype=None, name=None, preferred_dtype=None)    value可以是np.array,list,tensor
+例子:tf.convert_to_tensor(np.asarray(img, np.float32), np.float32)
+
+CNN:
+
+tf.convert_to_tensor(np.array(img,np.float32),np.float32)              img->np.array->tensor
+
+def init(shape,type,init_method):
+    if init_method ='zeros':
+      return tf.Varible(tf.zeros(shape,type))
+    if init_method ='normal':
+      return tf.Varible(tf.random_normal(shape,type))
+    if init_method ='xavier':
+      fan_in ,fan_out__=xavier.params
+      low = -4*np.sqrt(6.0/(fan_in + fan_out))                # {sigmoid:4, tanh:1}
+      high = 4*np.sqrt(6.0/(fan_in + fan_out))
+      return tf.Varible(tf.random_uniform(shape,low,high,type))
+      
+def conv2d(x, W, strides=1, padding='SAME'):
+    return tf.nn.conv2d(x, W, [1, strides, strides, 1], padding='SAME')
+
+
+def max_pool(x, ksize=2, strides=2, padding='SAME'):
+    return tf.nn.max_pool(x, ksize=[1, ksize, ksize, 1], strides=[1, strides, strides, 1], padding=padding)
+
