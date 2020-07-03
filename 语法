@@ -15,11 +15,10 @@ tf.reshape(inputs,shape)
 
 tf.random_permutation(x)  生成从0-x内随机排序的数组
 
-
-
-
 tf.convert_to_tensor(value, dtype=None, name=None, preferred_dtype=None)    value可以是np.array,list,tensor
 例子:tf.convert_to_tensor(np.asarray(img, np.float32), np.float32)
+
+tensor.get.shape().as.list()     只有变量为tensor的情况可用
 
 CNN:
 
@@ -27,14 +26,14 @@ tf.convert_to_tensor(np.array(img,np.float32),np.float32)              img->np.a
 
 def init(shape,type,init_method):
     if init_method ='zeros':
-      return tf.Varible(tf.zeros(shape,type))
+        return tf.Varible(tf.zeros(shape,type))
     if init_method ='normal':
-      return tf.Varible(tf.random_normal(shape,type))
+        return tf.Varible(tf.random_normal(shape,type))
     if init_method ='xavier':
-      fan_in ,fan_out__=xavier.params
-      low = -4*np.sqrt(6.0/(fan_in + fan_out))                # {sigmoid:4, tanh:1}
-      high = 4*np.sqrt(6.0/(fan_in + fan_out))
-      return tf.Varible(tf.random_uniform(shape,low,high,type))
+        fan_in ,fan_out__=xavier.params
+        low = -4*np.sqrt(6.0/(fan_in + fan_out))                # {sigmoid:4, tanh:1}
+        high = 4*np.sqrt(6.0/(fan_in + fan_out))
+    return tf.Varible(tf.random_uniform(shape,low,high,type))
       
 def conv2d(x, W, strides=1, padding='SAME'):
     return tf.nn.conv2d(x, W, [1, strides, strides, 1], padding='SAME')
