@@ -1,3 +1,20 @@
+TP：预测为正向（P），实际上预测正确（T），即判断为正向的正确率
+
+TN：预测为负向（N），实际上预测正确（T），即判断为负向的正确率
+
+FP：预测为正向（P），实际上预测错误（F），误报率，即把负向判断成了正向
+
+FN：预测为负向（N），实际上预测错误（F），漏报率，即把正向判断称了负向
+
+ 
+
+准确率Accuracy=（TP+TN） / （TP+FP+TN+FN）， 即预测正确的比上全部的数据
+
+精确率Precision=TP / （TP+FP），即在预测为正向的数据中，有多少预测正确了
+
+召回率Recall=TP / （TP+FN），即在所有正向的数据中，有多少预测正确了
+
+#-------------------------
 数据转换与处理
 
 tf.get_Variable("x",shape,type,initializer=tf.contrib.layer.xavier_initilizer())  没有x则创建x
@@ -5,7 +22,7 @@ tf.Variable(x)
 
 tf.ramdom_normal(shape,正态分布均值，标准差，type,seed,name)
 
-tf.random_uniform（shape,low,high,type） 返回shape大小的均值分布数据
+tf.random_uniform（shape,low,high,type） 返回shape大小的均值分布数据，shape=()代表只产生一个值？
 
 tf.zeros(shape,type)
 
@@ -19,6 +36,26 @@ tf.convert_to_tensor(value, dtype=None, name=None, preferred_dtype=None)    valu
 例子:tf.convert_to_tensor(np.asarray(img, np.float32), np.float32)
 
 tensor.get.shape().as.list()     只有变量为tensor的情况可用
+
+#创建协调员，启动队列，执行出入队伍
+with tf.Session() as tf:
+    coord=tf.train.Coordinator()
+    threads=tf.train.start_queue_runners(coord=coord)
+    ......
+    ......#cv图片处理前需要先cvtColor(img,cv2.COLOR_RGB2BGR)        RGB->BGR
+    ......#随机饱和度变化 tf.image.random_saturation(img,lower,upper,seed)
+    ......#随机色相变化  tf.image.random_hue(img,max_delata,seed)    max_delata=[0,0.5]
+    ......#随机对比度变化 tf.image.random_contrast(img,lower,upper,seed)
+    ......#随机亮度变化 tf.image.random_brightness(img,max_delta,seed)
+    ......#随机伽马变化 tf.image.adjust_gamma(img,gamma=1,gain=1)
+    ......#上下左右翻转 tf.image.flip_left_right(img)   tf.image.flip_up_down(img)   随机 tf.image.random_flip_up_down(img) ....
+    ......#图像转置  tf.image.transpose_image(img)
+    ......#随机旋转 tf.contrib.image.rotate(img,angles,interpolation='NEAREST')
+    ......#随机裁剪 rf.random_crop(value,size,seed)
+    coord.request_stop()
+    coord.join(threads)
+
+
 
 CNN:
 
