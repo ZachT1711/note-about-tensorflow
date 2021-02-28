@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/HenryJHao/note-about-tensorflow)
+
 # note-about-tensorflow
 tensorflow-gpu 踩坑实录  基于win10 
 
